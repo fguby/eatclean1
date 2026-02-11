@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102216",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>Welcome Screen</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark max-w-[430px] mx-auto overflow-hidden">
+<!-- Status Bar Area (iOS Mockup) -->
+<div class="flex items-center justify-between px-8 pt-4 pb-2 text-sm font-semibold">
+<span>9:41</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[18px]">battery_full</span>
+</div>
+</div>
+<!-- Top App Bar / Hero Section -->
+<div class="@container w-full">
+<div class="px-4 py-4">
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[340px] shadow-2xl relative" data-alt="Healthy fresh salad bowl on table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpNWMmHQ5x4To9G1Ro613bqAxCFrs7jH402Qe_DKv24Ha-u4k_bgebile13mWiIRk0S6_hsJUK0Z6ISlEO7IcyrH8lgIlnhF_xWC8u7pGGvoAQ-pltiZvKPXG7taJPFS-ky65POzryoTWkEPvNPdJ-AGV_z5Vd-s--i3d-ECHvg_vT2ht2sIdlZwnHy7tsGJforS78hubBal3VoCqW6SmlRi5Winr8fs33PpRXzdytZRQLqhVc2IBeU5VzC5tusbcwwtD__7ZJUs4");'>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Text Content Area -->
+<div class="flex flex-col px-6 pt-6 pb-2 text-center">
+<h1 class="text-gray-900 dark:text-white tracking-tight text-[32px] font-bold leading-tight pb-4">
+                Eat without breaking your training plan.
+            </h1>
+<p class="text-gray-600 dark:text-gray-400 text-base font-normal leading-relaxed px-2">
+                Let our AI scan menus to find the perfect meals that fit your daily macros and training goals.
+            </p>
+</div>
+<!-- Features Quick Look -->
+<div class="grid grid-cols-3 gap-4 px-6 py-6">
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary">restaurant_menu</span>
+</div>
+<span class="text-xs font-medium text-gray-500">Scan Menu</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+</div>
+<span class="text-xs font-medium text-gray-500">Track Macros</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<span class="text-xs font-medium text-gray-500">AI Advice</span>
+</div>
+</div>
+<!-- Action Area -->
+<div class="mt-auto flex flex-col gap-3 px-6 py-8 pb-12">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-primary text-background-dark text-lg font-bold leading-normal tracking-tight shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+<span>Get Started</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-transparent text-gray-500 dark:text-gray-400 text-base font-semibold leading-normal hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
+<span>I already have an account</span>
+</button>
+</div>
+<!-- Home Indicator -->
+<div class="flex justify-center pb-2">
+<div class="w-32 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+</div>
+</div>
+</body></html>

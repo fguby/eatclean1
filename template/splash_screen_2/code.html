@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meal History Log - NutriScan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-dark": "#0a0c0a",
+                        "card-dark": "#161b17",
+                        "score-green": "#13ec5b",
+                        "score-yellow": "#ffd700",
+                        "score-red": "#ff4b4b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-white antialiased">
+<div class="fixed top-0 w-full h-12 flex justify-between items-center px-8 z-[60] bg-background-dark/80 backdrop-blur-md">
+<div class="text-sm font-semibold">9:41</div>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[18px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+<span class="material-symbols-outlined text-[20px]">battery_full</span>
+</div>
+</div>
+<header class="fixed top-12 w-full z-50 bg-background-dark/80 backdrop-blur-md px-6 pt-4 pb-6">
+<div class="flex items-center justify-between mb-6">
+<h1 class="text-3xl font-bold tracking-tight">History</h1>
+<div class="w-10 h-10 rounded-full bg-card-dark border border-white/10 flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYLxdakeaXgZJL8HAlvxz9Wd7Ld9Gb_G1LiG_EehikCj-gN2mVAhYYO-Mkjky1_D_d9YOgwvkKiDgI-sGVuWTDEMMFsEpTGSRKoSYVMhwpmp__N4txZifN6XAN8qQ9ny0yTVQrseykdZamxu4WEuJM_10GX6OE4y0lN8ayLxkm7MCYiGTA9_ofan9qEMDCFM4Hz6V_AUQ5gmt7dFKb5aJDEwHtjecrP7VF5UWgsD_2DN-CRlYEzRh8jV6QQiRUr5GbSiFHnAnkTUA"/>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xl">search</span>
+<input class="w-full bg-card-dark border-none rounded-2xl py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary/50 placeholder:text-gray-500" placeholder="Search meals or restaurants" type="text"/>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-card-dark rounded-2xl border border-white/5">
+<span class="material-symbols-outlined text-gray-400">tune</span>
+</button>
+</div>
+</header>
+<main class="pt-48 pb-24 px-6 space-y-4">
+<div class="space-y-4">
+<h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Today</h2>
+<div class="bg-card-dark rounded-3xl p-4 flex gap-4 border border-white/5 shadow-lg">
+<div class="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden bg-gray-800">
+<img alt="Salmon Salad" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAJPmdpNloMEh3bevYsmclNVNaGKsAWXywAwuNUp50IXODHDpeSgqT9V6_L5RQJwEwnV39v8WKqb7NiHogK2ZOAqShTD4g_WJ_EzqA8Kea3YfKTNMno_0x_MOOYk7EuyE9OXyAADX9cUcRmJo9CO59kwuXlWqACidH4tflL7sbFM5LhDnKT4MLulzqv4M4zjex2d0guQSWfenaNu1n2ZTSTEl9boPec0nHKgaDfwBHnXkdb_CcU-p9fZQ-6v2pgJ2WDrDYyFVYnnA"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-semibold text-white text-[17px]">Wild Salmon Salad</h3>
+<div class="px-2.5 py-1 rounded-full bg-score-green/10 text-score-green text-[11px] font-bold uppercase border border-score-green/20">
+                                Excellent
+                            </div>
+</div>
+<p class="text-gray-400 text-sm mt-0.5">Green Leaf Kitchen</p>
+</div>
+<div class="flex items-center text-xs text-gray-500 gap-3">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 12:45 PM
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> 420 kcal
+                        </span>
+</div>
+</div>
+</div>
+<div class="bg-card-dark rounded-3xl p-4 flex gap-4 border border-white/5 shadow-lg">
+<div class="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden bg-gray-800">
+<img alt="Chicken Burger" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpGzKaM_SfrXdAXlSKzqbJlFvZp-gO5NHb9zwg8eGuNcSG4gF1n-Sv7keX6Lb4Gt4jR8Yzw0i5Mi5OngPDi0woUttawx05u2xDrcA_D8HEO_l5tMjYWBVkHSfDpL3WkkGhaCm8yEaJgqNSAVRQz_ozXwtL51Ubg1NR6KJqpKpwEq5pmCyh2A0dtjjj3g9cy8BYgbEcdvjFX58BvPmM4wpFEvry6KBwP2uJgoS7VgYUKpMpNhlCYMlChevEYJ7OiMxoXbUpko1VAbA"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-semibold text-white text-[17px]">Avocado Chicken Club</h3>
+<div class="px-2.5 py-1 rounded-full bg-score-yellow/10 text-score-yellow text-[11px] font-bold uppercase border border-score-yellow/20">
+                                Moderate
+                            </div>
+</div>
+<p class="text-gray-400 text-sm mt-0.5">The Grill House</p>
+</div>
+<div class="flex items-center text-xs text-gray-500 gap-3">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 8:15 AM
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> 680 kcal
+                        </span>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4 pt-4">
+<h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Yesterday</h2>
+<div class="bg-card-dark rounded-3xl p-4 flex gap-4 border border-white/5 shadow-lg">
+<div class="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden bg-gray-800">
+<img alt="Double Burger" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1L2_kZTzbvNoHExbmwUUPBJ1SjYO3-7zj0ZAl4kJfdQQZQuGBs394tM8HIn89tk4_LY6Tp4xicO6ypjRaZI9CkE4SXkvA-5USsRb_GS4N-CUZjzuvC--8wb1p2HhIQTgcQKLOFRVrGCVR_hSQeLOTqQZJs2I25_8j91-biJtxqnqDNSbLHTCwDl9pE16HeumVQSQpvrtL9CU3_6HCTNGgW0uDOIq0GCFvX85z1fsWdcPAr_9YrCufkQ8HmI_opyofYN6_cgNMmIo"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-semibold text-white text-[17px]">BBQ Double Burger</h3>
+<div class="px-2.5 py-1 rounded-full bg-score-red/10 text-score-red text-[11px] font-bold uppercase border border-score-red/20">
+                                High Sodium
+                            </div>
+</div>
+<p class="text-gray-400 text-sm mt-0.5">Burger Hub</p>
+</div>
+<div class="flex items-center text-xs text-gray-500 gap-3">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 7:30 PM
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> 950 kcal
+                        </span>
+</div>
+</div>
+</div>
+<div class="bg-card-dark rounded-3xl p-4 flex gap-4 border border-white/5 shadow-lg">
+<div class="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden bg-gray-800">
+<img alt="Quinoa Bowl" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS2XWo7h_KZ-J6bogpguYbPDyvKgwDz4xSFOSa7c3slThssXN4LetgoYZv-_-9p84Q7Ca8Cy41BKXAIfxoJGOAUUQevoKmZSx9LI1VQovzD8OWzO-p8ZwwNEEvxGLF3bUIHuy0dmQmLiRLxhOfboVcDgTXCpIiHWSR6vAB4TWsmaZtQ1PLCvjWx7Ch_amCmCzbJkngXoLOwOE14tMWujCFXB0ex5Tu9dAx69Ci628vleOlxPGYFUaJs012XLTsFzAU8qB9e3gNy8A"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-semibold text-white text-[17px]">Mediterranean Bowl</h3>
+<div class="px-2.5 py-1 rounded-full bg-score-green/10 text-score-green text-[11px] font-bold uppercase border border-score-green/20">
+                                Excellent
+                            </div>
+</div>
+<p class="text-gray-400 text-sm mt-0.5">Fresh Bites Cafe</p>
+</div>
+<div class="flex items-center text-xs text-gray-500 gap-3">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 1:20 PM
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> 380 kcal
+                        </span>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4 pt-4">
+<h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Oct 24, 2023</h2>
+<div class="bg-card-dark rounded-3xl p-4 flex gap-4 border border-white/5 shadow-lg opacity-80">
+<div class="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden bg-gray-800">
+<img alt="Steak" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZpYusmV96yI9rf_NUH1dQQ-wye23p_VckHjmbGr54ygOnKHpV3SXJhK7WPxPiJo0m2lviMVhD0w1C-h100RCHNACEpgD81MXsKVwPy_u99zjWq0PwNS_cY2N71eQkU5lIHrR_Fpa4ltPCAFAejFkoZSPqnz2OdPb1Aimg6bERo2favMXh21VY7jB7AicRTpKFAmDSHygO6ZLHB5aTtrSyvguBXdK3Rb_tzK_YKK84gYVPF8K_RDL4WJxM7dsI1tcOzqhASGxgPdk"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-semibold text-white text-[17px]">Grilled Sirloin</h3>
+<div class="px-2.5 py-1 rounded-full bg-score-yellow/10 text-score-yellow text-[11px] font-bold uppercase border border-score-yellow/20">
+                                High Protein
+                            </div>
+</div>
+<p class="text-gray-400 text-sm mt-0.5">Steak &amp; Co</p>
+</div>
+<div class="flex items-center text-xs text-gray-500 gap-3">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 8:00 PM
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">local_fire_department</span> 540 kcal
+                        </span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 w-full h-24 bg-background-dark/95 backdrop-blur-xl border-t border-white/5 px-6 pb-6 flex items-center justify-between z-[60]">
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined text-[28px]">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[28px] fill-1">history</span>
+<span class="text-[10px] font-medium">History</span>
+</button>
+<button class="w-14 h-14 bg-primary text-background-dark rounded-full -mt-10 flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl font-bold">scan_delete</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined text-[28px]">insights</span>
+<span class="text-[10px] font-medium">Insights</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+<div class="fixed bottom-1 w-full flex justify-center z-[70] pointer-events-none">
+<div class="w-32 h-1.5 bg-white/20 rounded-full"></div>
+</div>
+
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "verdict-red": "#fa5538",
+                        "verdict-yellow": "#facc15",
+                        "verdict-green": "#13ec5b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-slate-200 dark:border-white/10">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-display">Analysis Results</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 bg-transparent text-slate-900 dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Main Verdict Card -->
+<div class="p-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-lg bg-white dark:bg-[#1c271f] overflow-hidden border border-slate-200 dark:border-white/5">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A gourmet healthy salad bowl with salmon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOMElkgAPQL6x1mRmJfT8mZ02Rs96YH25KPbuhsjJNIdtiCMqYaYV753hzHNBLxcLhdd7melrpz-3N9-jjqI6bg8myWqAttoDPUwnXSAMMQFmvw75nELNiFqkWhNhIpN-Hzqz3eIhJthqrFgEX7jn0URJKVeQArOWwcaf8jqEtk9ggYphGfIiHA1H43hzxJC-Zd3xAS6u4-Gb9ae-Snpazbw0UFsvIWPwMddZyEiSR4rnGC1c5RGuXNCuY81F0Oqo7xBGbKtdyI3E");'></div>
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-5 px-5">
+<div class="flex items-center gap-2 mb-1">
+<span class="size-2 rounded-full bg-verdict-red animate-pulse"></span>
+<p class="text-verdict-red text-xs font-bold uppercase tracking-wider">High Alert</p>
+</div>
+<p class="text-slate-900 dark:text-white text-2xl font-bold leading-tight tracking-tight">Not Recommended</p>
+<div class="mt-2 space-y-3">
+<p class="text-slate-600 dark:text-[#9db9a6] text-base font-normal leading-relaxed">
+                            This item contains high levels of sodium (1,200mg) and processed sugars which significantly exceed your daily goal of 2,000kcal.
+                        </p>
+<button class="w-full flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-primary text-background-dark text-base font-bold leading-normal transition-opacity active:opacity-80">
+<span class="truncate">Swap for Healthier Alternative</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Nutritional Breakdown Grid -->
+<h2 class="text-slate-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-4 font-display">Nutritional Breakdown</h2>
+<div class="flex flex-wrap gap-3 p-4">
+<!-- Calorie Card -->
+<div class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 border border-slate-200 dark:border-[#3b5443] bg-white dark:bg-transparent">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-500">local_fire_department</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Calories</p>
+</div>
+<p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold leading-tight">850 <span class="text-sm font-normal">kcal</span></p>
+<div class="flex items-center gap-1 text-verdict-red">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<p class="text-xs font-bold leading-normal">+15% vs Daily Goal</p>
+</div>
+</div>
+<!-- Protein Card -->
+<div class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 border border-slate-200 dark:border-[#3b5443] bg-white dark:bg-transparent">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-500">fitness_center</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Protein</p>
+</div>
+<p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold leading-tight">12 <span class="text-sm font-normal">g</span></p>
+<div class="flex items-center gap-1 text-verdict-red">
+<span class="material-symbols-outlined text-xs">trending_down</span>
+<p class="text-xs font-bold leading-normal">-5% vs Daily Goal</p>
+</div>
+</div>
+<!-- Sugars Card -->
+<div class="flex min-w-[150px] flex-1 flex-col gap-2 rounded-xl p-5 border border-slate-200 dark:border-[#3b5443] bg-white dark:bg-transparent">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-slate-500">icecream</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Sugars</p>
+</div>
+<p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold leading-tight">45 <span class="text-sm font-normal">g</span></p>
+<div class="flex items-center gap-1 text-verdict-red">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<p class="text-xs font-bold leading-normal">+30% Over Limit</p>
+</div>
+</div>
+</div>
+<!-- Key Modifications Section -->
+<h2 class="text-slate-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-4 font-display">Key Modifications</h2>
+<div class="px-4 pb-8 space-y-3">
+<div class="flex items-start gap-4 p-4 rounded-xl bg-verdict-yellow/10 border border-verdict-yellow/20">
+<span class="material-symbols-outlined text-verdict-yellow mt-0.5">warning</span>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-white font-bold text-sm">Hold the Sauce</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm">Removes 12g of sugar and 200mg of sodium.</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">check_circle</span>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div class="flex-1">
+<p class="text-slate-900 dark:text-white font-bold text-sm">Double the Veggies</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm">Adds 4g of fiber and essential micronutrients.</p>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+</div>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="mt-auto p-4 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-white/10">
+<div class="flex gap-3">
+<button class="flex-1 flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-slate-200 dark:bg-white/10 text-slate-900 dark:text-white text-base font-bold leading-normal">
+                    Save Result
+                </button>
+<button class="flex-1 flex cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-4 bg-primary text-background-dark text-base font-bold leading-normal">
+                    Add to Journal
+                </button>
+</div>
+</div>
+</div>
+</body></html>

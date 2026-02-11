@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dietary Preferences</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Inter", sans-serif;
+    -webkit-tap-highlight-color: transparent
+    }
+.custom-checkbox:checked {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDdjeFERMubRCulj1nBcuXawJr3YVXaYmV7qUgS_wNJkHV07TMq_pLxqJzoVnDZm90XPKVmKi5rk648iKq_wr7fEHnHU7n0CZVxGMlrITO3RBIDx8rFB-ClGXNwzbou84Ioor74R8zmOvK6WqqWAayUG6DioSDtOVdyGpAGJ0Us18GFT-y8OYiWy2D5mNYBj635DHtxUp5hykUcgC6lRFhbXnnKXLJw_Esy1ADx9HM6gNQrpXHKKV7hH_T7a-TDlnwiRLaHa7bDOO0)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased">
+<div class="relative mx-auto min-h-screen max-w-[430px] flex flex-col shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Header Section -->
+<header class="flex items-center justify-between p-4 pt-6">
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800/50">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<div class="h-1 w-24 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+<div class="h-full w-2/3 bg-primary rounded-full"></div>
+</div>
+<div class="size-10"></div> <!-- Placeholder for symmetry -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-6 pt-4 pb-8 flex flex-col">
+<div class="mb-8">
+<h1 class="text-3xl font-bold leading-tight tracking-tight mb-3">
+                    Personalize your nutrition
+                </h1>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
+                    Select the options that best match your fitness goals for smart menu scanning.
+                </p>
+</div>
+<!-- Preferences List -->
+<div class="space-y-3">
+<label class="flex items-center justify-between p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">no_meals</span>
+</div>
+<span class="text-lg font-medium">Avoid fried food</span>
+</div>
+<input checked="" class="custom-checkbox h-6 w-6 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">opacity</span>
+</div>
+<span class="text-lg font-medium">Low sugar</span>
+</div>
+<input class="custom-checkbox h-6 w-6 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined">skillet</span>
+</div>
+<span class="text-lg font-medium">Low fat</span>
+</div>
+<input class="custom-checkbox h-6 w-6 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<span class="text-lg font-medium">No dairy</span>
+</div>
+<input class="custom-checkbox h-6 w-6 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0" type="checkbox"/>
+</label>
+</div>
+<div class="mt-auto pt-10 space-y-3">
+<button class="w-full h-14 bg-primary text-black font-bold rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+                    Save Preferences
+                </button>
+<button class="w-full h-14 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl flex items-center justify-center active:scale-[0.98] transition-transform">
+                    Skip
+                </button>
+</div>
+</main>
+<!-- Home Indicator -->
+<div class="flex justify-center pb-2">
+<div class="w-32 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+</div>
+</div>
+</body></html>

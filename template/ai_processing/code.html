@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Processing - FitAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#13ec5b",
+                "background-light": "#f6f8f6",
+                "background-dark": "#0a0f0b",
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .ios-status-bar {
+            height: 44px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center">
+<!-- Main Container (iPhone Pro Max roughly) -->
+<div class="relative w-full max-w-[430px] min-h-screen bg-background-light dark:bg-background-dark flex flex-col overflow-hidden shadow-2xl">
+<!-- iOS Status Bar Mock -->
+<div class="ios-status-bar flex justify-between items-end px-8 pb-1">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-base">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-base">wifi</span>
+<span class="material-symbols-outlined text-base">battery_full</span>
+</div>
+</div>
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-12">FitAI Coach</h2>
+</div>
+<!-- Visual Header -->
+<div class="flex flex-col items-center pt-8 pb-4">
+<div class="relative flex items-center justify-center">
+<!-- Outer Pulse Rings -->
+<div class="absolute w-48 h-48 rounded-full bg-primary/10 border border-primary/20"></div>
+<div class="absolute w-36 h-36 rounded-full bg-primary/20 border border-primary/30"></div>
+<!-- AI Avatar/Logo -->
+<div class="relative w-24 h-24 rounded-full bg-primary flex items-center justify-center shadow-[0_0_30px_rgba(19,236,91,0.4)]">
+<span class="material-symbols-outlined text-background-dark text-5xl">auto_awesome</span>
+</div>
+</div>
+<h2 class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold leading-tight px-4 text-center mt-8">Analyzing your meal...</h2>
+<p class="text-slate-500 dark:text-gray-400 text-sm mt-2 text-center px-8">Comparing nutritional data against your weight loss goals.</p>
+</div>
+<!-- Progress Overview -->
+<div class="flex flex-col gap-3 p-6 mx-4 mt-4 bg-white/50 dark:bg-white/5 rounded-2xl backdrop-blur-md border border-slate-200 dark:border-white/10">
+<div class="flex gap-6 justify-between items-center">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Overall Progress</p>
+<p class="text-primary text-sm font-bold leading-normal">74%</p>
+</div>
+<div class="h-3 w-full rounded-full bg-slate-200 dark:bg-emerald-950 overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 74%;"></div>
+</div>
+<p class="text-slate-500 dark:text-gray-400 text-xs font-medium leading-normal italic">Coach Tip: High-protein choices identified in menu!</p>
+</div>
+<!-- Detailed Steps -->
+<div class="flex flex-col px-6 mt-8 space-y-0">
+<!-- Step 1: Complete -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-background-dark">
+<span class="material-symbols-outlined text-lg font-bold">check</span>
+</div>
+<div class="w-[2px] bg-primary h-12"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Extracting Text</p>
+<p class="text-slate-500 dark:text-gray-400 text-sm font-normal">Identified 12 menu items successfully</p>
+</div>
+</div>
+<!-- Step 2: In Progress -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/20 text-primary border border-primary/50">
+<span class="material-symbols-outlined text-lg animate-spin">refresh</span>
+</div>
+<div class="w-[2px] bg-slate-200 dark:bg-emerald-900/50 h-12"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-slate-900 dark:text-white text-base font-semibold leading-tight">Analyzing fat and carb risk</p>
+<p class="text-primary text-sm font-medium">Processing nutrients...</p>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-gray-600 border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-lg">schedule</span>
+</div>
+<div class="w-[2px] bg-slate-200 dark:bg-emerald-900/50 h-12"></div>
+</div>
+<div class="flex flex-col pb-6">
+<p class="text-slate-400 dark:text-gray-600 text-base font-medium leading-tight">Calculating macro breakdown</p>
+<p class="text-slate-400 dark:text-gray-600 text-sm font-normal italic">Waiting for analysis</p>
+</div>
+</div>
+<!-- Step 4: Final -->
+<div class="grid grid-cols-[40px_1fr] gap-x-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-gray-600 border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-lg">restaurant</span>
+</div>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-400 dark:text-gray-600 text-base font-medium leading-tight">Generating meal suggestions</p>
+<p class="text-slate-400 dark:text-gray-600 text-sm font-normal">Personalizing for you</p>
+</div>
+</div>
+</div>
+<!-- Footer / Action Area -->
+<div class="mt-auto p-6 pb-12">
+<button class="w-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-semibold py-4 rounded-xl flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">close</span>
+                Cancel Analysis
+            </button>
+<p class="text-slate-500 dark:text-gray-500 text-[11px] text-center mt-4 uppercase tracking-widest font-bold">Secure AI Processing</p>
+</div>
+<!-- iOS Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-300 dark:bg-gray-800 rounded-full"></div>
+</div>
+</body></html>

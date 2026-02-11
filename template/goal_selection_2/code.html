@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Modifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0a120d",
+                        "card-dark": "#16251b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            min-height: 100dvh;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden max-w-[430px] mx-auto shadow-2xl">
+<div class="flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 ios-blur p-4 sticky top-0 z-20">
+<div class="text-slate-900 dark:text-white flex size-10 items-center justify-center cursor-pointer rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-base font-semibold leading-tight flex-1 text-center">Modifications</h2>
+<div class="size-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">tips_and_updates</span>
+</div>
+</div>
+<div class="px-6 pt-6 pb-2">
+<div class="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px; font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-primary text-[10px] font-bold uppercase tracking-wider">Smart Suggestions</span>
+</div>
+<h1 class="text-slate-900 dark:text-white tracking-tight text-3xl font-extrabold leading-tight">Fine-tune your meal.</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base font-medium leading-relaxed mt-2 italic">
+                "Small tweaks lead to massive results. Let's optimize this order for your progress."
+            </p>
+</div>
+<div class="flex flex-col gap-3 p-6">
+<div class="group flex items-center gap-4 rounded-2xl bg-white dark:bg-card-dark p-4 shadow-sm border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-200">
+<div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">oil_barrel</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Ask for less oil</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Saves ~120 calories without compromising flavor.</p>
+</div>
+<div class="size-6 border-2 border-primary/30 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-black text-xs font-bold scale-0 group-hover:scale-100 transition-transform">check</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 rounded-2xl bg-white dark:bg-card-dark p-4 shadow-sm border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-200">
+<div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">no_food</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Skip the sauce</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Request it on the side to control sugar intake.</p>
+</div>
+<div class="size-6 border-2 border-primary/30 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-black text-xs font-bold scale-0 group-hover:scale-100 transition-transform">check</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 rounded-2xl bg-white dark:bg-card-dark p-4 shadow-sm border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-200">
+<div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Double the greens</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Swap fries for a side salad to boost fiber.</p>
+</div>
+<div class="size-6 border-2 border-primary/30 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-black text-xs font-bold scale-0 group-hover:scale-100 transition-transform">check</span>
+</div>
+</div>
+<div class="group flex items-center gap-4 rounded-2xl bg-white dark:bg-card-dark p-4 shadow-sm border border-slate-200 dark:border-white/5 hover:border-primary/50 transition-all duration-200">
+<div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">low_density</span>
+</div>
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Reduce carbs</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Remove the top bun or choose a lettuce wrap.</p>
+</div>
+<div class="size-6 border-2 border-primary/30 rounded-full flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-black text-xs font-bold scale-0 group-hover:scale-100 transition-transform">check</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4">
+<div class="bg-primary/5 border border-primary/20 rounded-2xl p-5">
+<div class="flex items-center gap-3 mb-2">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center overflow-hidden">
+<img alt="Coach" class="object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjxcZM6YsQYuYSODtyyhFjSuLa3nfs6rH3uWs5Ygno8uyEe7GXFhrT7AnH3MlXSyzYzipQTwAqo1xgHkqF64zuwP5Ebi1lqzkNTcrJcnNRTJe_JXOHk-ZdCqplYXXbuLxdWCcgH3zXu7Gu5MVBzOKYH1ubxrHlkfxhB5fpXvbXFHEVScvKMgPADP8cYQgeJ1w5Dvb9cagD_MynraNy6ALr7mv_qMDeuX8C4QffSTjkK5qqqF30uGcYSeDiyQ_o9Nh3CSQU8MPPDi4"/>
+</div>
+<span class="text-sm font-bold text-primary">Coach Ben</span>
+</div>
+<p class="text-sm text-slate-300 leading-relaxed">
+                    "These changes will cut approximately 340 calories from this meal while increasing satiety. Great work staying focused!"
+                </p>
+</div>
+</div>
+<div class="mt-auto p-6 bg-white/5 backdrop-blur-md border-t border-white/10 sticky bottom-0">
+<button class="w-full bg-primary text-black h-14 rounded-2xl font-bold text-lg shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+                Update Order Preferences
+            </button>
+<div class="mt-4 flex justify-center">
+<div class="w-32 h-1.5 bg-white/20 rounded-full"></div>
+</div>
+</div>
+</div>
+
+</body></html>

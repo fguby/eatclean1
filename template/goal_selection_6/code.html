@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Takeout Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: 100dvh;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden max-w-[430px] mx-auto shadow-2xl">
+<div class="flex items-center justify-between bg-background-light dark:bg-background-dark/80 p-4 sticky top-0 z-20 ios-blur border-b border-white/5">
+<div class="text-slate-900 dark:text-white flex size-10 items-center justify-center cursor-pointer active:opacity-50 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-base font-bold leading-tight tracking-tight">Takeout Analysis</h2>
+<div class="text-primary flex size-10 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined" style="font-size: 24px;">history</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="px-6 pt-8 pb-6">
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[32px] font-extrabold leading-tight">Analyze Your Delivery.</h1>
+<p class="text-slate-600 dark:text-primary/80 text-md font-medium leading-normal mt-2">Upload a screenshot from UberEats or DoorDash, or paste your order details.</p>
+</div>
+<div class="flex flex-col gap-6 p-6">
+<div class="group relative flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-10 transition-all active:scale-[0.98] cursor-pointer">
+<div class="size-16 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-size: 32px;">add_photo_alternate</span>
+</div>
+<div class="text-center">
+<p class="text-lg font-bold text-white">Upload Screenshot</p>
+<p class="text-sm text-slate-400 mt-1">Supports all major delivery apps</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="h-[1px] flex-1 bg-white/10"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">OR</span>
+<div class="h-[1px] flex-1 bg-white/10"></div>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-xs font-bold uppercase tracking-wider text-primary/70 px-1">Paste Order Details</label>
+<div class="relative group">
+<textarea class="w-full h-32 rounded-xl bg-white dark:bg-[#1c2e21] border-2 border-transparent focus:border-primary focus:ring-0 text-white p-4 text-sm placeholder:text-slate-500 transition-all" placeholder="Example: 1x Grilled Chicken Bowl with extra greens, brown rice, and tahini dressing..."></textarea>
+<div class="absolute bottom-3 right-3">
+<button class="bg-primary text-black size-8 rounded-full flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-white dark:bg-[#1c2e21] p-5 border border-white/5">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">tips_and_updates</span>
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">How it works</h3>
+</div>
+<ul class="space-y-3">
+<li class="flex gap-3">
+<div class="size-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+<span class="text-[10px] font-bold text-primary">1</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">AI identifies ingredients and estimated portion sizes from your order text or image.</p>
+</li>
+<li class="flex gap-3">
+<div class="size-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+<span class="text-[10px] font-bold text-primary">2</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">Evaluates the meal against your current <span class="text-primary font-medium">Muscle Gain</span> goal.</p>
+</li>
+<li class="flex gap-3">
+<div class="size-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+<span class="text-[10px] font-bold text-primary">3</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">Provides "Swap Tips" to optimize the nutritional value for your next order.</p>
+</li>
+</ul>
+</div>
+<div class="relative overflow-hidden rounded-xl border border-white/10 opacity-60">
+<div class="absolute top-2 right-2 z-10">
+<span class="bg-black/60 backdrop-blur-md text-[10px] font-bold px-2 py-1 rounded text-white uppercase tracking-tighter">Example</span>
+</div>
+<div class="flex p-4 gap-4 bg-white/5">
+<div class="w-16 h-16 bg-slate-800 rounded-lg shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">restaurant</span>
+</div>
+<div class="flex-1">
+<div class="h-4 w-24 bg-slate-700 rounded mb-2"></div>
+<div class="h-3 w-full bg-slate-800 rounded mb-1"></div>
+<div class="h-3 w-2/3 bg-slate-800 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-background-light dark:bg-background-dark/95 border-t border-white/5 ios-blur">
+<button class="w-full bg-primary hover:bg-primary/90 text-black font-bold h-14 rounded-full flex items-center justify-center gap-2 transition-all active:scale-[0.97]">
+<span class="material-symbols-outlined">analytics</span>
+                Start Deep Analysis
+            </button>
+<p class="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-[0.2em] font-medium">Powered by Nutrition AI Engine</p>
+</div>
+<div class="h-8"></div>
+</div>
+
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Goal Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden max-w-[430px] mx-auto shadow-2xl">
+<!-- Top App Bar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 sticky top-0 z-10">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center cursor-pointer">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12 uppercase tracking-widest text-xs opacity-70">Step 1 of 3</h2>
+</div>
+<!-- Header Section -->
+<div class="px-6 pt-8 pb-4">
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[36px] font-extrabold leading-tight text-left">Define your objective.</h1>
+<p class="text-slate-600 dark:text-primary/80 text-lg font-medium leading-normal mt-2">Precision nutrition starts with a clear target. Choose your path below.</p>
+</div>
+<!-- Goal Selection List -->
+<div class="flex flex-col gap-4 p-6">
+<!-- Muscle Gain Card -->
+<div class="group relative flex flex-col gap-4 rounded-xl bg-white dark:bg-[#1c2e21] p-5 shadow-sm border-2 border-transparent hover:border-primary transition-all duration-200 cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-2 flex-1 pr-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">fitness_center</span>
+<p class="text-slate-900 dark:text-white text-xl font-bold leading-tight">Muscle Gain</p>
+</div>
+<p class="text-slate-600 dark:text-[#9db9a6] text-sm font-normal leading-relaxed">Optimize for hypertrophy. High-protein fueling protocols designed to build lean mass and maximize strength.</p>
+</div>
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 grayscale group-hover:grayscale-0 transition-all" data-alt="Close up of a muscular person lifting weights" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCv8INWWOWCXu-VmAHKpVtCy_OBX1jbRgB6ZZNbXIefgFuuGggdsivoxhLsyT0j6neB3XYSpUcC0IpluVSf1PBK7NpS-jt7RYf2aQ2X536vYjevmRob59t8DWN_iJMgeh7KRZ3pXh64aBYCE_oR2OrF9nPMhc_4X25zTgImrtKGRwq1iewGAvdjROW99nYw9kNo1g7Yq3yIuuuCj1igwdXrCI8-3XpEc0yKLUaXWuaFk5iMHvLWf3WKSwm0aVwJsfvOtlk6ooZV0TQ");'></div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">High Performance</span>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-primary text-black text-sm font-bold leading-normal transition-transform active:scale-95">
+                        Select Plan
+                    </button>
+</div>
+</div>
+<!-- Fat Loss Card -->
+<div class="group relative flex flex-col gap-4 rounded-xl bg-white dark:bg-[#1c2e21] p-5 shadow-sm border-2 border-transparent hover:border-primary transition-all duration-200 cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-2 flex-1 pr-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">local_fire_department</span>
+<p class="text-slate-900 dark:text-white text-xl font-bold leading-tight">Fat Loss</p>
+</div>
+<p class="text-slate-600 dark:text-[#9db9a6] text-sm font-normal leading-relaxed">Ignite your metabolism. Strategic caloric deficits that preserve hard-earned muscle while shedding body fat.</p>
+</div>
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 grayscale group-hover:grayscale-0 transition-all" data-alt="Healthy bowl of salad and measuring tape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAU55BZcugtq0Hj4c6zLhk9nUAFhId8k1YNwy65CEWTNtUepeAAzf6HSpqYKT-Mer6RcMnnKKu-wpQMnJ38HGg2ZvBMG6ODSCG5aM9Ub65w7HsELlcdlUyPjyaeHI6FBNGx-G9mS2t3xSQHv5U9cgzsth7NzpUD9__VDpoWeLibbJYKulIKhkL5uG3Mk9rF3T1GgWvW9H0IbpryWLvGUfONrJVciB0yKlaUQ7HzKKO3M61S0euonUvY8zkziAzqkVVbO_m2HLUOedo");'></div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">Metabolic Optimization</span>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-primary text-black text-sm font-bold leading-normal transition-transform active:scale-95">
+                        Select Plan
+                    </button>
+</div>
+</div>
+<!-- Maintain Card -->
+<div class="group relative flex flex-col gap-4 rounded-xl bg-white dark:bg-[#1c2e21] p-5 shadow-sm border-2 border-transparent hover:border-primary transition-all duration-200 cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-2 flex-1 pr-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">balance</span>
+<p class="text-slate-900 dark:text-white text-xl font-bold leading-tight">Maintain</p>
+</div>
+<p class="text-slate-600 dark:text-[#9db9a6] text-sm font-normal leading-relaxed">Sustainable longevity. Find your baseline and master the art of consistency for long-term health and vitality.</p>
+</div>
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0 grayscale group-hover:grayscale-0 transition-all" data-alt="Person meditating or looking peaceful in gym gear" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBvm32c3D6SZ1j_9HDgzLcE1AfY30rhoiDlCKEHuux8ck7lKXdH7Z0U_mmYrRCdPvMd2o8RZYlIIk7AG7YXxGpCmqHX2NeJ6Mnuo-7PcJ3RxAR0x-ckxj8itxLU1Uru3bI-XRJqQ5CSOHECtqwnGA9RvDMRKZ0XaGGV_9wIHsoIHNEGJGZFEZjo0_xPW7EuxymW1BNwQGdX6wpoYoYml8yjLiU168jE91Aq8rFRRBqw5Qf6JrLSP6QlNSeJiMRilZX0Xxbx9jZs4Eo");'></div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-1 rounded">Daily Vitality</span>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-primary text-black text-sm font-bold leading-normal transition-transform active:scale-95">
+                        Select Plan
+                    </button>
+</div>
+</div>
+</div>
+<!-- Coaching Footer -->
+<div class="mt-auto p-6 bg-white/5 backdrop-blur-md border-t border-white/10">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+<p class="text-xs text-slate-400 leading-tight">
+                    Your choice will calibrate our AI menu scanner to highlight foods that align with your specific metabolic needs.
+                </p>
+</div>
+</div>
+<!-- Tab Bar Placeholder (iOS Style) -->
+<div class="h-8 bg-background-light dark:bg-background-dark"></div>
+</div>
+</body></html>
