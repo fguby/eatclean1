@@ -1,0 +1,149 @@
+{
+  "" : {
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatclean-primary.dia",
+    "emit-module-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatclean-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatclean-primary-emit-module.dia",
+    "pch" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatclean-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatclean-primary.swiftdeps"
+  },
+  "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/ContentView.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Core/AppState.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/AppState~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Core/DesignSystem.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DesignSystem~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Core/Models/DomainModels.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DomainModels~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Core/Network/APIClient.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/APIClient~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Core/Persistence/LocalStore.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/LocalStore~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Core/Services.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/Services~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Features/Dashboard/MainTabView.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/MainTabView~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Features/Discover/DiscoverView.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/DiscoverView~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Features/Onboarding/OnboardingFlowView.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/OnboardingFlowView~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Features/Profile/ProfileView.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ProfileView~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/Features/Scan/ScanView.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/ScanView~partial.swiftmodule"
+  },
+  "/Users/joewu/Downloads/eatclean/swift_project/eatclean/eatclean/eatcleanApp.swift" : {
+    "const-values" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.swiftconstvalues",
+    "dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.d",
+    "diagnostics" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.dia",
+    "index-unit-output-path" : "/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.o",
+    "llvm-bc" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.bc",
+    "object" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.o",
+    "swift-dependencies" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp.swiftdeps",
+    "swiftmodule" : "/Users/joewu/Downloads/eatclean/.derivedData/Build/Intermediates.noindex/eatclean.build/Debug-iphoneos/eatclean.build/Objects-normal/arm64/eatcleanApp~partial.swiftmodule"
+  }
+}
