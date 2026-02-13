@@ -52,3 +52,10 @@ func (s *SubscriptionService) Latest(userID int64) (*repository.SubscriptionReco
 	}
 	return s.repo.LatestByUser(userID)
 }
+
+func (s *SubscriptionService) CountDistinctSubscribers() (int, error) {
+	if !s.IsEnabled() {
+		return 0, nil
+	}
+	return s.repo.CountDistinctSubscribers()
+}

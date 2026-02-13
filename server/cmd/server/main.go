@@ -10,18 +10,12 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	echomiddleware "github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	// 加载环境变量
-	if err := godotenv.Load(); err != nil {
-		log.Println("Warning: .env file not found, using environment variables")
-	}
-
 	// 加载配置
 	cfg, err := config.Load()
 	if err != nil {
@@ -51,23 +45,6 @@ func main() {
 	dishRepo := repository.NewDishRepository(db)
 	weeklyMenuRepo := repository.NewWeeklyMenuRepository(db)
 	subscriptionRepo := repository.NewSubscriptionRepository(db)
-	userRepo.EnsureAvatarColumn()
-
-	if err := settingsRepo.EnsureTable(); err != nil {
-		log.Printf("Warning: failed to ensure user_settings table: %v", err)
-	}
-	if err := dailyIntakeRepo.EnsureTable(); err != nil {
-		log.Printf("Warning: failed to ensure daily_intake table: %v", err)
-	}
-	if err := dishRepo.EnsureTable(); err != nil {
-		log.Printf("Warning: failed to ensure dish table: %v", err)
-	}
-	if err := weeklyMenuRepo.EnsureTable(); err != nil {
-		log.Printf("Warning: failed to ensure weekly_menu table: %v", err)
-	}
-	if err := subscriptionRepo.EnsureTable(); err != nil {
-		log.Printf("Warning: failed to ensure subscription table: %v", err)
-	}
 
 	// 初始化 services
 	authService := service.NewAuthService(userRepo, &cfg.JWT, &cfg.Apple)
@@ -112,7 +89,7 @@ func main() {
 	})
 
 	// API 路由
-	api := e.Group("/api/v1")
+	api := e.Group("/eatclean/api/v1")
 
 	// 认证路由（无需 JWT）
 	auth := api.Group("/auth")
@@ -133,6 +110,7 @@ func main() {
 	metered := protected.Group("")
 	metered.Use(quotaGuard)
 	protected.GET("/auth/profile", authHandler.GetProfile)
+	protected.POST("/auth/profile/nickname", authHandler.UpdateNickname)
 	protected.POST("/user/avatar", authHandler.UpdateAvatar)
 	metered.POST("/menu/parse", menuHandler.ParseMenu)
 	metered.POST("/menu/scan", menuHandler.ScanImages)
@@ -140,6 +118,8 @@ func main() {
 	protected.GET("/user/settings", settingsHandler.Get)
 	protected.POST("/meals", mealRecordHandler.Create)
 	metered.POST("/meals/photo", mealRecordHandler.CreateFromPhoto)
+	metered.POST("/meals/analyze", mealRecordHandler.AnalyzeFromPhoto)
+	metered.POST("/ingredients/scan", mealRecordHandler.ScanIngredients)
 	protected.GET("/meals", mealRecordHandler.List)
 	protected.POST("/intake/daily", dailyIntakeHandler.UpsertDailyIntake)
 	metered.GET("/oss/sts", ossHandler.GetSTS)

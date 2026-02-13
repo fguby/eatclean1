@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"encoding/json"
 	"errors"
 	"strings"
 
@@ -178,6 +179,49 @@ func (h *AuthHandler) GetProfile(c echo.Context) error {
 	return response.Success(c, map[string]interface{}{
 		"user_id":    userID,
 		"avatar_url": c.Get("avatar_url"),
+	})
+}
+
+// UpdateNickname 登录后更新用户昵称（写入 user_settings.user_name）
+func (h *AuthHandler) UpdateNickname(c echo.Context) error {
+	userID, ok := c.Get("user_id").(int64)
+	if !ok {
+		return response.Unauthorized(c, "invalid user context")
+	}
+	if h.settingsService == nil {
+		return response.InternalError(c, "settings service unavailable")
+	}
+
+	var body struct {
+		Nickname string `json:"nickname"`
+	}
+	if err := c.Bind(&body); err != nil {
+		return response.BadRequest(c, "invalid request body")
+	}
+	nickname := strings.TrimSpace(body.Nickname)
+	if nickname == "" {
+		return response.BadRequest(c, "nickname is required")
+	}
+	if len([]rune(nickname)) > 24 {
+		return response.BadRequest(c, "nickname is too long")
+	}
+
+	merged := map[string]interface{}{}
+	if raw, err := h.settingsService.Get(userID); err == nil && len(raw) > 0 {
+		_ = json.Unmarshal(raw, &merged)
+	}
+	merged["user_name"] = nickname
+
+	payload, err := json.Marshal(merged)
+	if err != nil {
+		return response.InternalError(c, "failed to encode settings")
+	}
+	if err := h.settingsService.Upsert(userID, payload); err != nil {
+		return response.InternalError(c, "failed to update nickname")
+	}
+
+	return response.Success(c, map[string]interface{}{
+		"user_name": nickname,
 	})
 }
 

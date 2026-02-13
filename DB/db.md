@@ -24,6 +24,10 @@ CREATE UNIQUE INDEX idx_user_wechat
 ON app_user(wechat_openid)
 WHERE wechat_openid IS NOT NULL;
 
+CREATE UNIQUE INDEX idx_user_unionid
+ON app_user(unionid)
+WHERE unionid IS NOT NULL;
+
 -- 用户账号密码（账号登录）
 CREATE TABLE user_account (
   user_id        BIGINT PRIMARY KEY REFERENCES app_user(id) ON DELETE CASCADE,
@@ -60,6 +64,8 @@ CREATE TABLE user_settings (
   settings    JSONB NOT NULL,
   updated_at  TIMESTAMP DEFAULT NOW()
 );
+
+-- 说明：昵称使用 settings.user_name 字段保存，可通过登录后接口更新
 
 CREATE INDEX idx_user_settings_json ON user_settings USING GIN(settings);
 

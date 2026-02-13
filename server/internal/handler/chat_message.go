@@ -85,5 +85,8 @@ func (h *ChatMessageHandler) List(c echo.Context) error {
 	if err != nil {
 		return response.InternalError(c, "failed to load chat messages")
 	}
+	if messages == nil {
+		messages = make([]model.ChatMessage, 0)
+	}
 	return response.Success(c, messages)
 }

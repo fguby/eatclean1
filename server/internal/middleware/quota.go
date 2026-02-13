@@ -83,6 +83,8 @@ func costForPath(path string) int {
 	case strings.Contains(path, "/menu/parse"),
 		strings.Contains(path, "/menu/scan"),
 		strings.Contains(path, "/meals/photo"),
+		strings.Contains(path, "/meals/analyze"),
+		strings.Contains(path, "/ingredients/scan"),
 		strings.Contains(path, "/discover/recommendations"),
 		strings.Contains(path, "/discover/replace"),
 		strings.Contains(path, "/discover/weekly/generate"),

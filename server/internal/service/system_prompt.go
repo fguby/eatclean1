@@ -12,6 +12,8 @@ import (
 	"sync"
 	"time"
 
+	"eatclean/internal/config"
+
 	"github.com/labstack/gommon/log"
 )
 
@@ -28,6 +30,10 @@ var (
 	foodPromptTemplate string
 	foodPromptErr      error
 
+	ingredientPromptOnce     sync.Once
+	ingredientPromptTemplate string
+	ingredientPromptErr      error
+
 	discoverPlanOnce     sync.Once
 	discoverPlanTemplate string
 	discoverPlanErr      error
@@ -43,10 +49,12 @@ var (
 
 func LoadMenuScanPromptTemplate() (string, error) {
 	menuPromptOnce.Do(func() {
-		path := strings.TrimSpace(os.Getenv("MENU_PROMPT_PATH"))
-		if path == "" {
-			path = "prompt/menu_scan.txt"
+		cfg, err := config.Load()
+		if err != nil {
+			menuPromptErr = err
+			return
 		}
+		path := strings.TrimSpace(cfg.Prompts.MenuScanPath)
 		data, err := os.ReadFile(path)
 		if err != nil {
 			menuPromptErr = err
@@ -59,10 +67,12 @@ func LoadMenuScanPromptTemplate() (string, error) {
 
 func LoadFoodScanPromptTemplate() (string, error) {
 	foodPromptOnce.Do(func() {
-		path := strings.TrimSpace(os.Getenv("FOOD_PROMPT_PATH"))
-		if path == "" {
-			path = "prompt/food_scan.txt"
+		cfg, err := config.Load()
+		if err != nil {
+			foodPromptErr = err
+			return
 		}
+		path := strings.TrimSpace(cfg.Prompts.FoodScanPath)
 		data, err := os.ReadFile(path)
 		if err != nil {
 			foodPromptErr = err
@@ -73,12 +83,32 @@ func LoadFoodScanPromptTemplate() (string, error) {
 	return foodPromptTemplate, foodPromptErr
 }
 
+func LoadIngredientScanPromptTemplate() (string, error) {
+	ingredientPromptOnce.Do(func() {
+		cfg, err := config.Load()
+		if err != nil {
+			ingredientPromptErr = err
+			return
+		}
+		path := strings.TrimSpace(cfg.Prompts.IngredientScanPath)
+		data, err := os.ReadFile(path)
+		if err != nil {
+			ingredientPromptErr = err
+			return
+		}
+		ingredientPromptTemplate = string(data)
+	})
+	return ingredientPromptTemplate, ingredientPromptErr
+}
+
 func LoadDiscoverPlanPromptTemplate() (string, error) {
 	discoverPlanOnce.Do(func() {
-		path := strings.TrimSpace(os.Getenv("DISCOVER_PLAN_PROMPT_PATH"))
-		if path == "" {
-			path = "prompt/discover_plan.txt"
+		cfg, err := config.Load()
+		if err != nil {
+			discoverPlanErr = err
+			return
 		}
+		path := strings.TrimSpace(cfg.Prompts.DiscoverPlanPath)
 		data, err := os.ReadFile(path)
 		if err != nil {
 			discoverPlanErr = err
@@ -91,10 +121,12 @@ func LoadDiscoverPlanPromptTemplate() (string, error) {
 
 func LoadDiscoverReplacePromptTemplate() (string, error) {
 	discoverReplaceOnce.Do(func() {
-		path := strings.TrimSpace(os.Getenv("DISCOVER_REPLACE_PROMPT_PATH"))
-		if path == "" {
-			path = "prompt/discover_replace.txt"
+		cfg, err := config.Load()
+		if err != nil {
+			discoverReplaceErr = err
+			return
 		}
+		path := strings.TrimSpace(cfg.Prompts.DiscoverReplacePath)
 		data, err := os.ReadFile(path)
 		if err != nil {
 			discoverReplaceErr = err
@@ -107,10 +139,12 @@ func LoadDiscoverReplacePromptTemplate() (string, error) {
 
 func LoadChatPromptTemplate() (string, error) {
 	chatPromptOnce.Do(func() {
-		path := strings.TrimSpace(os.Getenv("CHAT_PROMPT_PATH"))
-		if path == "" {
-			path = "prompt/chat_prompt.txt"
+		cfg, err := config.Load()
+		if err != nil {
+			chatPromptErr = err
+			return
 		}
+		path := strings.TrimSpace(cfg.Prompts.ChatPromptPath)
 		data, err := os.ReadFile(path)
 		if err != nil {
 			chatPromptErr = err

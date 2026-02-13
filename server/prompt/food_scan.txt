@@ -85,12 +85,36 @@ AI个性化设置：
 - 如果用户违背了计划选择了不符合的饮食，你需要着重提醒这一点
 - 回答的语气和风格要符合大胡子的个性化设置，当回答风格的是不近人情时：语气直接严厉、减少安抚，突出风险与执行力度，必要时可以使用‘你想就这样自甘堕落吗？’、‘放弃是懦夫的行为’之类的言词来激励用户，但需要保持专业与可执行的建议
 
-请输出 JSON 数组格式：
-[{
-  "dish_id": "菜品的ID",
-  "decision": "ok/limit/avoid",
-  "score": 0-100,
-  "reason": "说明推荐理由",
-  "adjustments": "可选字段，可给出个性化建议",
-  "action_suggestion": "可选字段，提示用户操作，例如 action=xiangji/setting/record_meal"
-}]
+请输出 JSON 对象格式（不要输出其它内容）：
+{
+  "summary": "结合用户目标、最近记录、当前时段的详细分析",
+  "dishes": [
+    {
+      "id": "string",
+      "name": "食物名称",
+      "restaurant": "来源，未知可写照片识别",
+      "score": 0-100,
+      "scoreLabel": "优秀|良好|谨慎|避免",
+      "scoreColor": "ff13ec5b",
+      "kcal": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0,
+      "tag": "识别结果",
+      "recommended": true,
+      "components": ["主食材1", "主食材2"],
+      "reason": "解释为什么适合/不适合用户当前阶段"
+    }
+  ],
+  "nutrition_highlights": [
+    { "name": "能量", "value": "520", "unit": "kcal/份" },
+    { "name": "蛋白质", "value": "35", "unit": "g/份" },
+    { "name": "脂肪", "value": "20", "unit": "g/份" },
+    { "name": "碳水", "value": "48", "unit": "g/份" },
+    { "name": "钠", "value": "780", "unit": "mg/份" },
+    { "name": "糖", "value": "9", "unit": "g/份" }
+  ],
+  "risk_alerts": ["可选，风险提示列表"],
+  "ingredient_list": ["可选，识别到的食材"],
+  "actions": ["action=record_meal", "action=discover"]
+}

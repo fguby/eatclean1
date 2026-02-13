@@ -2,10 +2,14 @@ package service
 
 import (
 	"context"
+	"crypto/rand"
+	"encoding/hex"
 	"eatclean/internal/config"
 	"eatclean/internal/model"
 	"eatclean/internal/repository"
 	"errors"
+	"fmt"
+	"strings"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -70,9 +74,11 @@ func (s *AuthService) Login(ctx context.Context, req *model.LoginRequest) (*mode
 		}
 		if user == nil {
 			// 创建新用户
+			unionID := s.newUnionID()
 			user = &model.User{
 				Platform:    req.Platform,
 				AppleUserID: req.AppleUserID,
+				UnionID:     &unionID,
 				LastLoginAt: timePtr(time.Now()),
 			}
 			if err := s.userRepo.Create(user); err != nil {
@@ -87,10 +93,14 @@ func (s *AuthService) Login(ctx context.Context, req *model.LoginRequest) (*mode
 		}
 		if user == nil {
 			// 创建新用户
+			unionID := strings.TrimSpace(derefString(req.UnionID))
+			if unionID == "" {
+				unionID = s.newUnionID()
+			}
 			user = &model.User{
 				Platform:     req.Platform,
 				WechatOpenID: req.WechatOpenID,
-				UnionID:      req.UnionID,
+				UnionID:      &unionID,
 				LastLoginAt:  timePtr(time.Now()),
 			}
 			if err := s.userRepo.Create(user); err != nil {
@@ -122,6 +132,9 @@ func (s *AuthService) Login(ctx context.Context, req *model.LoginRequest) (*mode
 			return nil, err
 		}
 		user.LastLoginAt = timePtr(time.Now())
+	}
+	if err := s.ensureUnionID(user); err != nil {
+		return nil, err
 	}
 
 	// 生成 JWT token
@@ -166,6 +179,7 @@ func (s *AuthService) Register(ctx context.Context, req *model.RegisterRequest) 
 		user = &model.User{
 			Platform:    req.Platform,
 			AppleUserID: req.AppleUserID,
+			UnionID:     stringPtr(s.newUnionID()),
 			LastLoginAt: timePtr(time.Now()),
 		}
 		if err := s.userRepo.Create(user); err != nil {
@@ -182,7 +196,7 @@ func (s *AuthService) Register(ctx context.Context, req *model.RegisterRequest) 
 		user = &model.User{
 			Platform:     req.Platform,
 			WechatOpenID: req.WechatOpenID,
-			UnionID:      req.UnionID,
+			UnionID:      stringPtr(firstNonEmpty(derefString(req.UnionID), s.newUnionID())),
 			LastLoginAt:  timePtr(time.Now()),
 		}
 		if err := s.userRepo.Create(user); err != nil {
@@ -203,8 +217,10 @@ func (s *AuthService) Register(ctx context.Context, req *model.RegisterRequest) 
 		if err != nil {
 			return nil, err
 		}
+		unionID := s.newUnionID()
 		user = &model.User{
 			Platform:    "account",
+			UnionID:     &unionID,
 			LastLoginAt: timePtr(time.Now()),
 		}
 		if err := s.userRepo.CreateWithAccount(user, *req.Account, string(hash)); err != nil {
@@ -212,6 +228,10 @@ func (s *AuthService) Register(ctx context.Context, req *model.RegisterRequest) 
 		}
 	} else {
 		return nil, ErrInvalidCredentials
+	}
+
+	if err := s.ensureUnionID(user); err != nil {
+		return nil, err
 	}
 
 	token, err := s.generateToken(user)
@@ -266,4 +286,61 @@ func (s *AuthService) UpdateAvatar(userID int64, url string) error {
 		return errors.New("user repo not available")
 	}
 	return s.userRepo.UpdateAvatar(userID, url)
+}
+
+func (s *AuthService) ensureUnionID(user *model.User) error {
+	if s.userRepo == nil || user == nil {
+		return errors.New("user repo not available")
+	}
+	if strings.TrimSpace(derefString(user.UnionID)) != "" {
+		return nil
+	}
+	for i := 0; i < 8; i++ {
+		candidate := s.newUnionID()
+		exists, err := s.userRepo.FindByUnionID(candidate)
+		if err != nil {
+			return err
+		}
+		if exists != nil {
+			continue
+		}
+		if err := s.userRepo.UpdateUnionID(user.ID, candidate); err != nil {
+			return err
+		}
+		user.UnionID = stringPtr(candidate)
+		return nil
+	}
+	return fmt.Errorf("failed to allocate unionid for user %d", user.ID)
+}
+
+func (s *AuthService) newUnionID() string {
+	var raw [10]byte
+	if _, err := rand.Read(raw[:]); err != nil {
+		return fmt.Sprintf("u%d", time.Now().UnixNano())
+	}
+	return "u" + hex.EncodeToString(raw[:])
+}
+
+func derefString(value *string) string {
+	if value == nil {
+		return ""
+	}
+	return *value
+}
+
+func stringPtr(value string) *string {
+	v := strings.TrimSpace(value)
+	if v == "" {
+		return nil
+	}
+	return &v
+}
+
+func firstNonEmpty(values ...string) string {
+	for _, v := range values {
+		if strings.TrimSpace(v) != "" {
+			return strings.TrimSpace(v)
+		}
+	}
+	return ""
 }

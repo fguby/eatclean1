@@ -157,6 +157,61 @@ func (s *VisionService) AnalyzeFoodFromURLs(ctx context.Context, urls []string, 
 	return s.callVisionWithURLs(ctx, urls, prompt, systemPrompt)
 }
 
+func (s *VisionService) AnalyzeIngredientFromURLs(ctx context.Context, urls []string, systemPrompt string) (string, error) {
+	if !s.IsEnabled() {
+		return "", errors.New("vision service not configured")
+	}
+	prompt := strings.TrimSpace(`
+你将收到一到多张配料表照片（可能包含营养成分表、配料列表、致敏物提示）。请结合系统模板中的用户画像、目标与限制，输出详尽分析并给出是否推荐食用结论。
+如果系统模板中包含用户补充说明，请优先参考。
+
+输出要求：
+- 只输出 JSON 对象，不要输出 Markdown 或多余解释。
+- 字段格式如下：
+{
+  "summary": "总体分析与建议",
+  "ingredient_list": ["标准化后的主要配料1", "主要配料2"],
+  "risk_alerts": ["风险点1", "风险点2"],
+  "nutrition_highlights": [
+    {"name":"能量", "value":"420", "unit":"kcal/100g"},
+    {"name":"蛋白质", "value":"8.2", "unit":"g/100g"},
+    {"name":"脂肪", "value":"20", "unit":"g/100g"},
+    {"name":"碳水化合物", "value":"52", "unit":"g/100g"},
+    {"name":"钠", "value":"650", "unit":"mg/100g"},
+    {"name":"糖", "value":"18", "unit":"g/100g"},
+    {"name":"膳食纤维", "value":"4.1", "unit":"g/100g"}
+  ],
+  "recommendation": "建议购买/谨慎食用/不建议",
+  "dishes": [
+    {
+      "id": "string",
+      "name": "食品名称（未知可写 包装食品）",
+      "restaurant": "配料表识别",
+      "score": 0-100,
+      "scoreLabel": "优秀/良好/谨慎/避免",
+      "scoreColor": "ff13ec5b",
+      "kcal": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0,
+      "tag": "配料分析",
+      "recommended": true,
+      "components": ["主要配料1", "主要配料2"],
+      "reason": "给用户的结论"
+    }
+  ],
+  "actions": ["action=record_meal"]
+}
+
+规则：
+- kcal/protein/carbs/fat 必须为整数；尽量给出每 100g 估算值。
+- 严格识别过敏原（如乳制品、坚果、甲壳类、大豆、麸质等）并体现在 risk_alerts。
+- 若存在反式脂肪酸、过高钠、高糖浆、代糖争议等，务必指出。
+- 输出字段必须完整，不得省略。
+`)
+	return s.callVisionWithURLs(ctx, urls, prompt, systemPrompt)
+}
+
 func (s *VisionService) callVision(ctx context.Context, images [][]byte, prompt string, systemPrompt string) (string, error) {
 	if len(images) == 0 {
 		return "", errors.New("no images provided")

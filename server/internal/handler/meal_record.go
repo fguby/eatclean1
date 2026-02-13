@@ -261,6 +261,210 @@ func (h *MealRecordHandler) CreateFromPhoto(c echo.Context) error {
 	return response.Success(c, record)
 }
 
+// AnalyzeFromPhoto 仅分析食物照片，不直接入库
+// POST /api/v1/meals/analyze
+func (h *MealRecordHandler) AnalyzeFromPhoto(c echo.Context) error {
+	userID, ok := c.Get("user_id").(int64)
+	if !ok {
+		return response.Unauthorized(c, "invalid user context")
+	}
+	var req struct {
+		ImageUrls  []string `json:"image_urls"`
+		ClientTime string   `json:"client_time"`
+		Note       string   `json:"note"`
+	}
+	if err := c.Bind(&req); err != nil {
+		return response.BadRequest(c, "invalid request body")
+	}
+	if len(req.ImageUrls) == 0 {
+		return response.BadRequest(c, "image_urls are required")
+	}
+	clientTime := parseClientTime(req.ClientTime)
+	note := strings.TrimSpace(req.Note)
+	if note == "" {
+		note = "无"
+	}
+
+	signedUrls := req.ImageUrls
+	if h.ossService != nil {
+		if signed, err := h.ossService.SignURLs(req.ImageUrls, 15*time.Minute); err == nil {
+			signedUrls = signed
+		} else {
+			c.Logger().Errorf("oss signing failed: %v", err)
+			return response.InternalError(c, "oss signing failed")
+		}
+	}
+	if h.visionService == nil || !h.visionService.IsEnabled() {
+		return response.InternalError(c, "vision service is not configured")
+	}
+
+	systemPrompt := ""
+	if h.settingsService != nil {
+		if raw, err := h.settingsService.Get(userID); err == nil && len(raw) > 0 {
+			var settings map[string]interface{}
+			if err := json.Unmarshal(raw, &settings); err == nil {
+				recentMealSummary := "暂无"
+				if h.service != nil {
+					if records, err := h.service.ListByUser(userID, 20); err == nil {
+						if summary := service.SummarizeMealRecords(records, 5); strings.TrimSpace(summary) != "" {
+							recentMealSummary = summary
+						}
+					}
+				}
+				if template, err := service.LoadFoodScanPromptTemplate(); err == nil {
+					isTraining, isCheat := computeDayFlagsForDate(settings, clientTime)
+					dayType := dayTypeLabel(isTraining, isCheat)
+					timeOfDay := timeOfDayLabel(clientTime)
+					intake := buildIntakeContext(h.dailyService, userID, clientTime, settings)
+					systemPrompt = service.BuildSystemPrompt(template, settings, map[string]string{
+						"food_photo_taken":    "true",
+						"menu_scanned":        "false",
+						"recent_chat_summary": "暂无",
+						"recent_meal_summary": recentMealSummary,
+						"current_time":        formatPromptTime(clientTime),
+						"time_of_day":         timeOfDay,
+						"day_type":            dayType,
+						"is_training_day":     formatYesNo(isTraining),
+						"is_cheat_day":        formatYesNo(isCheat),
+						"calories_consumed":   intake.CaloriesConsumed,
+						"macro_consumed":      intake.MacroConsumed,
+						"calorie_remaining":   intake.CalorieRemaining,
+						"food_photo_note":     note,
+					})
+				}
+			}
+		}
+	}
+
+	rawText, err := h.visionService.AnalyzeFoodFromURLs(c.Request().Context(), signedUrls, systemPrompt)
+	if err != nil {
+		c.Logger().Errorf("food analyze failed: %v", err)
+		return response.InternalError(c, "food analyze failed")
+	}
+	dishes, summary, actions := parseAIDishes(rawText)
+	if h.dishService != nil {
+		dishes = h.dishService.HydrateDishMapsPreferFresh(dishes)
+	}
+	ingredientList, riskAlerts, nutritionHighlights, recommendation := parseAIScanDetails(rawText)
+	if len(actions) == 0 {
+		actions = []string{"action=record_meal", "action=discover"}
+	}
+
+	return response.Success(c, map[string]interface{}{
+		"mode":                 "food",
+		"summary":              summary,
+		"actions":              actions,
+		"items":                dishes,
+		"ingredient_list":      ingredientList,
+		"risk_alerts":          riskAlerts,
+		"nutrition_highlights": nutritionHighlights,
+		"recommendation":       recommendation,
+		"raw":                  strings.TrimSpace(rawText),
+	})
+}
+
+// ScanIngredients 配料表分析，不直接入库
+// POST /api/v1/ingredients/scan
+func (h *MealRecordHandler) ScanIngredients(c echo.Context) error {
+	userID, ok := c.Get("user_id").(int64)
+	if !ok {
+		return response.Unauthorized(c, "invalid user context")
+	}
+	var req struct {
+		ImageUrls  []string `json:"image_urls"`
+		ClientTime string   `json:"client_time"`
+		Note       string   `json:"note"`
+	}
+	if err := c.Bind(&req); err != nil {
+		return response.BadRequest(c, "invalid request body")
+	}
+	if len(req.ImageUrls) == 0 {
+		return response.BadRequest(c, "image_urls are required")
+	}
+	clientTime := parseClientTime(req.ClientTime)
+	note := strings.TrimSpace(req.Note)
+	if note == "" {
+		note = "无"
+	}
+	if h.visionService == nil || !h.visionService.IsEnabled() {
+		return response.InternalError(c, "vision service is not configured")
+	}
+
+	signedUrls := req.ImageUrls
+	if h.ossService != nil {
+		if signed, err := h.ossService.SignURLs(req.ImageUrls, 15*time.Minute); err == nil {
+			signedUrls = signed
+		} else {
+			c.Logger().Errorf("oss signing failed: %v", err)
+			return response.InternalError(c, "oss signing failed")
+		}
+	}
+
+	systemPrompt := ""
+	if h.settingsService != nil {
+		if raw, err := h.settingsService.Get(userID); err == nil && len(raw) > 0 {
+			var settings map[string]interface{}
+			if err := json.Unmarshal(raw, &settings); err == nil {
+				recentMealSummary := "暂无"
+				if h.service != nil {
+					if records, err := h.service.ListByUser(userID, 20); err == nil {
+						if summary := service.SummarizeMealRecords(records, 5); strings.TrimSpace(summary) != "" {
+							recentMealSummary = summary
+						}
+					}
+				}
+				if template, err := service.LoadIngredientScanPromptTemplate(); err == nil {
+					isTraining, isCheat := computeDayFlagsForDate(settings, clientTime)
+					dayType := dayTypeLabel(isTraining, isCheat)
+					timeOfDay := timeOfDayLabel(clientTime)
+					intake := buildIntakeContext(h.dailyService, userID, clientTime, settings)
+					systemPrompt = service.BuildSystemPrompt(template, settings, map[string]string{
+						"food_photo_taken":      "false",
+						"menu_scanned":          "false",
+						"recent_chat_summary":   "暂无",
+						"recent_meal_summary":   recentMealSummary,
+						"current_time":          formatPromptTime(clientTime),
+						"time_of_day":           timeOfDay,
+						"day_type":              dayType,
+						"is_training_day":       formatYesNo(isTraining),
+						"is_cheat_day":          formatYesNo(isCheat),
+						"calories_consumed":     intake.CaloriesConsumed,
+						"macro_consumed":        intake.MacroConsumed,
+						"calorie_remaining":     intake.CalorieRemaining,
+						"ingredient_photo_note": note,
+					})
+				}
+			}
+		}
+	}
+
+	rawText, err := h.visionService.AnalyzeIngredientFromURLs(c.Request().Context(), signedUrls, systemPrompt)
+	if err != nil {
+		c.Logger().Errorf("ingredient analyze failed: %v", err)
+		return response.InternalError(c, "ingredient analyze failed")
+	}
+	dishes, summary, actions := parseAIDishes(rawText)
+	if h.dishService != nil {
+		dishes = h.dishService.HydrateDishMapsPreferFresh(dishes)
+	}
+	ingredientList, riskAlerts, nutritionHighlights, recommendation := parseAIScanDetails(rawText)
+	if len(actions) == 0 {
+		actions = []string{"action=record_meal", "action=setting"}
+	}
+
+	return response.Success(c, map[string]interface{}{
+		"mode":                 "ingredient",
+		"summary":              summary,
+		"actions":              actions,
+		"items":                dishes,
+		"ingredient_list":      ingredientList,
+		"risk_alerts":          riskAlerts,
+		"nutrition_highlights": nutritionHighlights,
+		"recommendation":       recommendation,
+		"raw":                  strings.TrimSpace(rawText),
+	})
+}
+
 func (h *MealRecordHandler) enforceMealPhotoQuota(
 	c echo.Context,
 	userID int64,
@@ -307,6 +511,9 @@ func (h *MealRecordHandler) List(c echo.Context) error {
 	if err != nil {
 		return response.InternalError(c, "failed to load meal records")
 	}
+	if records == nil {
+		records = make([]model.MealRecord, 0)
+	}
 	return response.Success(c, records)
 }
 
@@ -344,6 +551,51 @@ func parseAIDishes(raw string) ([]map[string]interface{}, string, []string) {
 	}
 	actions := toStringSlice(decoded.Actions)
 	return normalizeAIDishes(decoded.Dishes), summary, actions
+}
+
+func parseAIScanDetails(raw string) ([]string, []string, []map[string]interface{}, string) {
+	payload := extractJSONPayload(raw)
+	if payload == "" {
+		return nil, nil, nil, ""
+	}
+
+	trimmed := strings.TrimSpace(payload)
+	if !strings.HasPrefix(trimmed, "{") {
+		return nil, nil, nil, ""
+	}
+
+	var decoded map[string]interface{}
+	dec := json.NewDecoder(strings.NewReader(trimmed))
+	dec.UseNumber()
+	if err := dec.Decode(&decoded); err != nil {
+		return nil, nil, nil, ""
+	}
+
+	ingredientList := toStringSlice(decoded["ingredient_list"])
+	riskAlerts := toStringSlice(decoded["risk_alerts"])
+	recommendation := readString(decoded["recommendation"])
+
+	highlights := make([]map[string]interface{}, 0)
+	if rawHighlights, ok := decoded["nutrition_highlights"].([]interface{}); ok {
+		for _, item := range rawHighlights {
+			m, ok := item.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			name := strings.TrimSpace(readString(m["name"]))
+			value := strings.TrimSpace(readString(m["value"]))
+			unit := strings.TrimSpace(readString(m["unit"]))
+			if name == "" {
+				continue
+			}
+			highlights = append(highlights, map[string]interface{}{
+				"name":  name,
+				"value": value,
+				"unit":  unit,
+			})
+		}
+	}
+	return ingredientList, riskAlerts, highlights, recommendation
 }
 
 func normalizeAIDishes(raw []map[string]interface{}) []map[string]interface{} {

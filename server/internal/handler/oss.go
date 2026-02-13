@@ -22,10 +22,11 @@ func NewOssHandler(service *service.OssService, cfg *config.OSSConfig) *OssHandl
 // GetSTS 获取 OSS 临时凭证
 // GET /api/v1/oss/sts
 func (h *OssHandler) GetSTS(c echo.Context) error {
-	_, ok := c.Get("user_id").(int64)
+	userID, ok := c.Get("user_id").(int64)
 	if !ok {
 		return response.Unauthorized(c, "invalid user context")
 	}
+	c.Logger().Infof("oss sts request received: user_id=%d path=%s", userID, c.Path())
 	if h.service == nil || h.cfg == nil {
 		return response.InternalError(c, "oss service not configured")
 	}
@@ -40,6 +41,17 @@ func (h *OssHandler) GetSTS(c echo.Context) error {
 		c.Logger().Errorf("oss sts error: %v", err)
 		return response.InternalError(c, "failed to get oss sts token")
 	}
+	if token.AccessKeyID == "" || token.AccessKeySecret == "" || token.SecurityToken == "" {
+		c.Logger().Errorf("oss sts invalid token: access_key_id_len=%d access_key_secret_len=%d security_token_len=%d",
+			len(token.AccessKeyID), len(token.AccessKeySecret), len(token.SecurityToken))
+		return response.InternalError(c, "invalid oss sts token")
+	}
+	akPrefix := token.AccessKeyID
+	if len(akPrefix) > 12 {
+		akPrefix = akPrefix[:12]
+	}
+	c.Logger().Infof("oss sts issued: ak_prefix=%s***, ak_len=%d, endpoint=%s, bucket=%s",
+		akPrefix, len(token.AccessKeyID), h.cfg.Endpoint, h.cfg.Bucket)
 
 	endpoint := strings.TrimSpace(h.cfg.Endpoint)
 	endpoint = strings.TrimPrefix(endpoint, "https://")

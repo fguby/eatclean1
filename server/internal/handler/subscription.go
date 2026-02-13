@@ -157,12 +157,19 @@ func (h *SubscriptionHandler) Verify(c echo.Context) error {
 			c.Logger().Errorf("save subscription failed: %v", err)
 		}
 	}
+	subscriberRank := 0
+	if h.subscriptions != nil {
+		if count, err := h.subscriptions.CountDistinctSubscribers(); err == nil {
+			subscriberRank = count
+		}
+	}
 
 	return response.Success(c, map[string]interface{}{
 		"active":     active,
 		"status":     status,
 		"expire_at":  expireAt,
 		"product_id": pickValue(req.ProductID, info),
+		"subscriber_rank": subscriberRank,
 	})
 }
 
@@ -244,12 +251,19 @@ func (h *SubscriptionHandler) Restore(c echo.Context) error {
 			info.OriginalTransactionID,
 		)
 	}
+	subscriberRank := 0
+	if h.subscriptions != nil {
+		if count, err := h.subscriptions.CountDistinctSubscribers(); err == nil {
+			subscriberRank = count
+		}
+	}
 
 	return response.Success(c, map[string]interface{}{
 		"active":     status == "active",
 		"status":     status,
 		"expire_at":  expireAt,
 		"product_id": pickValue(body.ProductID, info),
+		"subscriber_rank": subscriberRank,
 	})
 }
 

@@ -3,108 +3,102 @@ package config
 import (
 	"fmt"
 	"os"
-	"strconv"
+	"path/filepath"
+	"sync"
+
+	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
-	Server   ServerConfig
-	Database DatabaseConfig
-	JWT      JWTConfig
-	Apple    AppleConfig
-	Qwen     QwenConfig
-	OSS      OSSConfig
+	Server   ServerConfig   `yaml:"server"`
+	Database DatabaseConfig `yaml:"database"`
+	JWT      JWTConfig      `yaml:"jwt"`
+	Apple    AppleConfig    `yaml:"apple"`
+	Qwen     QwenConfig     `yaml:"qwen"`
+	OSS      OSSConfig      `yaml:"oss"`
+	Prompts  PromptConfig   `yaml:"prompts"`
 }
 
 type ServerConfig struct {
-	Port string
+	Port string `yaml:"port"`
 }
 
 type DatabaseConfig struct {
-	Host     string
-	Port     string
-	User     string
-	Password string
-	DBName   string
-	SSLMode  string
+	Host     string `yaml:"host"`
+	Port     string `yaml:"port"`
+	User     string `yaml:"user"`
+	Password string `yaml:"password"`
+	DBName   string `yaml:"dbname"`
+	SSLMode  string `yaml:"sslmode"`
 }
 
 type JWTConfig struct {
-	Secret      string
-	ExpireHours int
+	Secret      string `yaml:"secret"`
+	ExpireHours int    `yaml:"expire_hours"`
 }
 
 type AppleConfig struct {
-	ClientID       string
-	SharedSecret   string
-	IssuerID       string
-	KeyID          string
-	BundleID       string
-	PrivateKeyPath string
+	ClientID       string `yaml:"client_id"`
+	SharedSecret   string `yaml:"shared_secret"`
+	IssuerID       string `yaml:"issuer_id"`
+	KeyID          string `yaml:"key_id"`
+	BundleID       string `yaml:"bundle_id"`
+	PrivateKeyPath string `yaml:"private_key_path"`
 }
 
 type QwenConfig struct {
-	APIKey  string
-	BaseURL string
-	Model   string
+	APIKey  string `yaml:"api_key"`
+	BaseURL string `yaml:"base_url"`
+	Model   string `yaml:"model"`
 }
 
 type OSSConfig struct {
-	Endpoint        string
-	Bucket          string
-	Region          string
-	AccessKeyID     string
-	AccessKeySecret string
-	RoleArn         string
-	StsDuration     int
-	StsEndpoint     string
+	Endpoint        string `yaml:"endpoint"`
+	Bucket          string `yaml:"bucket"`
+	Region          string `yaml:"region"`
+	AccessKeyID     string `yaml:"access_key_id"`
+	AccessKeySecret string `yaml:"access_key_secret"`
+	RoleArn         string `yaml:"role_arn"`
+	StsDuration     int    `yaml:"sts_duration"`
+	StsEndpoint     string `yaml:"sts_endpoint"`
 }
 
-func Load() (*Config, error) {
-	expireHours, err := strconv.Atoi(getEnv("JWT_EXPIRE_HOURS", "720"))
-	if err != nil {
-		expireHours = 720
-	}
+type PromptConfig struct {
+	MenuScanPath        string `yaml:"menu_scan_path"`
+	FoodScanPath        string `yaml:"food_scan_path"`
+	IngredientScanPath  string `yaml:"ingredient_scan_path"`
+	DiscoverPlanPath    string `yaml:"discover_plan_path"`
+	DiscoverReplacePath string `yaml:"discover_replace_path"`
+	ChatPromptPath      string `yaml:"chat_prompt_path"`
+}
 
-	return &Config{
-		Server: ServerConfig{
-			Port: getEnv("SERVER_PORT", "8080"),
-		},
-		Database: DatabaseConfig{
-			Host:     getEnv("DB_HOST", "localhost"),
-			Port:     getEnv("DB_PORT", "5432"),
-			User:     getEnv("DB_USER", "postgres"),
-			Password: getEnv("DB_PASSWORD", ""),
-			DBName:   getEnv("DB_NAME", "eatclean"),
-			SSLMode:  getEnv("DB_SSLMODE", "disable"),
-		},
-		JWT: JWTConfig{
-			Secret:      getEnv("JWT_SECRET", "default-secret-key"),
-			ExpireHours: expireHours,
-		},
-		Apple: AppleConfig{
-			ClientID:       getEnv("APPLE_CLIENT_ID", ""),
-			SharedSecret:   getEnv("APPLE_SHARED_SECRET", ""),
-			IssuerID:       getEnv("APPLE_ISSUER_ID", "4bb68e2f-dd6a-4842-adcb-0bbe691d32a9"),
-			KeyID:          getEnv("APPLE_KEY_ID", "979F55DL33"),
-			BundleID:       getEnv("APPLE_BUNDLE_ID", "com.midoriya.eatclean"),
-			PrivateKeyPath: getEnv("APPLE_PRIVATE_KEY_PATH", "p8/AuthKey_979F55DL33.p8"),
-		},
-		Qwen: QwenConfig{
-			APIKey:  getEnv("DASHSCOPE_API_KEY", ""),
-			BaseURL: getEnv("QWEN_BASE_URL", "https://dashscope.aliyuncs.com/compatible-mode/v1"),
-			Model:   getEnv("QWEN_VL_MODEL", "qwen-vl-plus"),
-		},
-		OSS: OSSConfig{
-			Endpoint:        getEnv("OSS_ENDPOINT", ""),
-			Bucket:          getEnv("OSS_BUCKET", ""),
-			Region:          getEnv("OSS_REGION", "cn-beijing"),
-			AccessKeyID:     getEnv("OSS_ACCESS_KEY_ID", ""),
-			AccessKeySecret: getEnv("OSS_ACCESS_KEY_SECRET", ""),
-			RoleArn:         getEnv("OSS_ROLE_ARN", ""),
-			StsDuration:     parseInt(getEnv("OSS_STS_DURATION", "3600"), 3600),
-			StsEndpoint:     getEnv("OSS_STS_ENDPOINT", "https://sts.aliyuncs.com"),
-		},
-	}, nil
+var (
+	loadedConfig *Config
+	loadErr      error
+	loadOnce     sync.Once
+)
+
+func Load() (*Config, error) {
+	loadOnce.Do(func() {
+		path, err := resolveConfigPath()
+		if err != nil {
+			loadErr = err
+			return
+		}
+		data, err := os.ReadFile(path)
+		if err != nil {
+			loadErr = err
+			return
+		}
+		var cfg Config
+		if err := yaml.Unmarshal(data, &cfg); err != nil {
+			loadErr = err
+			return
+		}
+		applyDefaults(&cfg)
+		loadedConfig = &cfg
+	})
+	return loadedConfig, loadErr
 }
 
 func (c *DatabaseConfig) DSN() string {
@@ -112,17 +106,87 @@ func (c *DatabaseConfig) DSN() string {
 		c.Host, c.Port, c.User, c.Password, c.DBName, c.SSLMode)
 }
 
-func getEnv(key, defaultValue string) string {
-	if value := os.Getenv(key); value != "" {
-		return value
+func resolveConfigPath() (string, error) {
+	paths := []string{
+		"config.yaml",
+		filepath.Join("eatclean", "config.yaml"),
 	}
-	return defaultValue
+	for _, p := range paths {
+		if _, err := os.Stat(p); err == nil {
+			return p, nil
+		}
+	}
+	return "", fmt.Errorf("config.yaml not found (searched: %v)", paths)
 }
 
-func parseInt(value string, fallback int) int {
-	parsed, err := strconv.Atoi(value)
-	if err != nil {
-		return fallback
+func applyDefaults(cfg *Config) {
+	if cfg.Server.Port == "" {
+		cfg.Server.Port = "8080"
 	}
-	return parsed
+	if cfg.Database.Host == "" {
+		cfg.Database.Host = "localhost"
+	}
+	if cfg.Database.Port == "" {
+		cfg.Database.Port = "5432"
+	}
+	if cfg.Database.User == "" {
+		cfg.Database.User = "postgres"
+	}
+	if cfg.Database.DBName == "" {
+		cfg.Database.DBName = "eatclean"
+	}
+	if cfg.Database.SSLMode == "" {
+		cfg.Database.SSLMode = "disable"
+	}
+	if cfg.JWT.Secret == "" {
+		cfg.JWT.Secret = "default-secret-key"
+	}
+	if cfg.JWT.ExpireHours == 0 {
+		cfg.JWT.ExpireHours = 720
+	}
+	if cfg.Apple.IssuerID == "" {
+		cfg.Apple.IssuerID = "4bb68e2f-dd6a-4842-adcb-0bbe691d32a9"
+	}
+	if cfg.Apple.KeyID == "" {
+		cfg.Apple.KeyID = "979F55DL33"
+	}
+	if cfg.Apple.BundleID == "" {
+		cfg.Apple.BundleID = "com.midoriya.eatclean"
+	}
+	if cfg.Apple.PrivateKeyPath == "" {
+		cfg.Apple.PrivateKeyPath = "p8/AuthKey_979F55DL33.p8"
+	}
+	if cfg.Qwen.BaseURL == "" {
+		cfg.Qwen.BaseURL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+	}
+	if cfg.Qwen.Model == "" {
+		cfg.Qwen.Model = "qwen-vl-plus"
+	}
+	if cfg.OSS.Region == "" {
+		cfg.OSS.Region = "cn-beijing"
+	}
+	if cfg.OSS.StsDuration == 0 {
+		cfg.OSS.StsDuration = 3600
+	}
+	if cfg.OSS.StsEndpoint == "" {
+		cfg.OSS.StsEndpoint = "https://sts.aliyuncs.com"
+	}
+	if cfg.Prompts.MenuScanPath == "" {
+		cfg.Prompts.MenuScanPath = "prompt/menu_scan.txt"
+	}
+	if cfg.Prompts.FoodScanPath == "" {
+		cfg.Prompts.FoodScanPath = "prompt/food_scan.txt"
+	}
+	if cfg.Prompts.IngredientScanPath == "" {
+		cfg.Prompts.IngredientScanPath = "prompt/ingredient_scan.txt"
+	}
+	if cfg.Prompts.DiscoverPlanPath == "" {
+		cfg.Prompts.DiscoverPlanPath = "prompt/discover_plan.txt"
+	}
+	if cfg.Prompts.DiscoverReplacePath == "" {
+		cfg.Prompts.DiscoverReplacePath = "prompt/discover_replace.txt"
+	}
+	if cfg.Prompts.ChatPromptPath == "" {
+		cfg.Prompts.ChatPromptPath = "prompt/chat_prompt.txt"
+	}
 }

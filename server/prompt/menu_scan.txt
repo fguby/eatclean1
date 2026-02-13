@@ -87,12 +87,39 @@ AI个性化设置：
 - 在建议中可结合用户近期行为（如最近搜索/最近饮食记录）
 - 你的风格要符合大胡子个性化设置，当建议风格是不近人情 时：语气直接严厉、减少安抚，突出风险与执行力度，必要时可以使用‘你想就这样自甘堕落吗？’、‘放弃是懦夫的行为’之类的言词来激励用户，但需要保持专业与可执行的建议
 
-请输出 JSON 数组格式：
-[{
-  "dish_id": "菜品的ID",
-  "decision": "ok/limit/avoid",
-  "score": 0-100,
-  "reason": "说明推荐理由",
-  "adjustments": "可选字段，可给出个性化建议",
-  "action_suggestion": "可选字段，提示用户操作，例如 action=xiangji/setting/record_meal"
-}]
+请输出 JSON 对象格式（不要输出其它内容）：
+{
+  "recognized_text": "从菜单图片提取的菜名，每行一个",
+  "summary": "结合当前目标、今日剩余预算与最近饮食记录的详细建议",
+  "dishes": [
+    {
+      "id": "string",
+      "name": "菜品名",
+      "restaurant": "商家名，未知则菜单识别",
+      "score": 0-100,
+      "scoreLabel": "优秀|良好|谨慎|避免",
+      "scoreColor": "ff13ec5b",
+      "kcal": 0,
+      "protein": 0,
+      "carbs": 0,
+      "fat": 0,
+      "tag": "推荐/谨慎/高蛋白等",
+      "recommended": true,
+      "components": ["主食材1", "主食材2"],
+      "reason": "推荐或不推荐原因，必须提到至少1个营养逻辑"
+    }
+  ],
+  "nutrition_highlights": [
+    { "name": "能量", "value": "620", "unit": "kcal/份" },
+    { "name": "蛋白质", "value": "36", "unit": "g/份" },
+    { "name": "脂肪", "value": "28", "unit": "g/份" },
+    { "name": "碳水", "value": "52", "unit": "g/份" }
+  ],
+  "recommended_dishes": [
+    {
+      "name": "推荐菜品",
+      "reason": "为什么推荐（结合用户最近饮食与目标）"
+    }
+  ],
+  "actions": ["action=discover", "action=record_meal", "action=ai_replace"]
+}

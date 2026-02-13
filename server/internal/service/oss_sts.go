@@ -105,11 +105,20 @@ func (s *OssService) assumeRoleWithHTTP(ctx context.Context) (*OssStsToken, erro
 		return nil, errors.New("empty sts response")
 	}
 	return &OssStsToken{
-		AccessKeyID:     decoded.Credentials.AccessKeyID,
-		AccessKeySecret: decoded.Credentials.AccessKeySecret,
-		SecurityToken:   decoded.Credentials.SecurityToken,
-		Expiration:      decoded.Credentials.Expiration,
+		AccessKeyID:     sanitizeSTSField(decoded.Credentials.AccessKeyID),
+		AccessKeySecret: sanitizeSTSField(decoded.Credentials.AccessKeySecret),
+		SecurityToken:   sanitizeSTSField(decoded.Credentials.SecurityToken),
+		Expiration:      sanitizeSTSField(decoded.Credentials.Expiration),
 	}, nil
+}
+
+func sanitizeSTSField(value string) string {
+	value = strings.TrimSpace(value)
+	value = strings.TrimPrefix(value, "\uFEFF")
+	value = strings.ReplaceAll(value, "\r", "")
+	value = strings.ReplaceAll(value, "\n", "")
+	value = strings.ReplaceAll(value, "\t", "")
+	return value
 }
 
 func buildCanonicalQuery(params map[string]string) string {

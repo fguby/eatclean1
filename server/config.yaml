@@ -1,0 +1,44 @@
+server:
+  port: "8080"
+
+database:
+  host: "localhost"
+  port: "5432"
+  user: "postgres"
+  password: ""
+  dbname: "eatclean"
+  sslmode: "disable"
+
+jwt:
+  secret: "default-secret-key"
+  expire_hours: 720
+
+apple:
+  client_id: ""
+  shared_secret: ""
+  issuer_id: "4bb68e2f-dd6a-4842-adcb-0bbe691d32a9"
+  key_id: "979F55DL33"
+  bundle_id: "com.midoriya.eatclean"
+  private_key_path: "p8/AuthKey_979F55DL33.p8"
+
+qwen:
+  api_key: ""
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  model: "qwen-vl-plus"
+
+oss:
+  endpoint: ""
+  bucket: ""
+  region: "cn-beijing"
+  access_key_id: ""
+  access_key_secret: ""
+  role_arn: ""
+  sts_duration: 3600
+  sts_endpoint: "https://sts.aliyuncs.com"
+
+prompts:
+  menu_scan_path: "prompt/menu_scan.txt"
+  food_scan_path: "prompt/food_scan.txt"
+  discover_plan_path: "prompt/discover_plan.txt"
+  discover_replace_path: "prompt/discover_replace.txt"
+  chat_prompt_path: "prompt/chat_prompt.txt"

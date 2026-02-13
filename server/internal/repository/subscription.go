@@ -176,3 +176,12 @@ func (r *SubscriptionRepository) LatestByUser(userID int64) (*SubscriptionRecord
 		UpdatedAt: updated,
 	}, nil
 }
+
+func (r *SubscriptionRepository) CountDistinctSubscribers() (int, error) {
+	if r.db == nil {
+		return 0, sql.ErrConnDone
+	}
+	var count int
+	err := r.db.QueryRow(`SELECT COUNT(DISTINCT user_id) FROM subscription`).Scan(&count)
+	return count, err
+}

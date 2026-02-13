@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"eatclean/internal/model"
 	"errors"
+	"strings"
 	"time"
 )
 
@@ -53,13 +54,36 @@ func (r *UserRepository) FindByWechatOpenID(openID string) (*model.User, error) 
 	return user, nil
 }
 
+func (r *UserRepository) FindByUnionID(unionID string) (*model.User, error) {
+	key := strings.TrimSpace(unionID)
+	if key == "" {
+		return nil, nil
+	}
+
+	user := &model.User{}
+	query := `SELECT id, platform, apple_user_id, wechat_openid, unionid, avatar_url, created_at, last_login_at
+	          FROM app_user WHERE unionid = $1`
+
+	err := r.db.QueryRow(query, key).Scan(
+		&user.ID, &user.Platform, &user.AppleUserID, &user.WechatOpenID,
+		&user.UnionID, &user.AvatarURL, &user.CreatedAt, &user.LastLoginAt,
+	)
+	if err == sql.ErrNoRows {
+		return nil, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
+}
+
 func (r *UserRepository) FindByAccount(account string) (*model.User, string, error) {
 	user := &model.User{}
 	var passwordHash string
 	query := `SELECT u.id, u.platform, u.apple_user_id, u.wechat_openid, u.unionid, u.avatar_url, u.created_at, u.last_login_at, a.password_hash
 	          FROM app_user u
 	          JOIN user_account a ON a.user_id = u.id
-	          WHERE a.account = $1`
+	          WHERE LOWER(a.account) = LOWER($1)`
 
 	err := r.db.QueryRow(query, account).Scan(
 		&user.ID, &user.Platform, &user.AppleUserID, &user.WechatOpenID,
@@ -120,6 +144,19 @@ func (r *UserRepository) CreateWithAccount(user *model.User, account string, pas
 func (r *UserRepository) UpdateLastLogin(userID int64) error {
 	query := `UPDATE app_user SET last_login_at = $1 WHERE id = $2`
 	_, err := r.db.Exec(query, time.Now(), userID)
+	return err
+}
+
+func (r *UserRepository) UpdateUnionID(userID int64, unionID string) error {
+	key := strings.TrimSpace(unionID)
+	if key == "" {
+		return errors.New("unionid is required")
+	}
+	_, err := r.db.Exec(
+		`UPDATE app_user SET unionid = $1 WHERE id = $2`,
+		key,
+		userID,
+	)
 	return err
 }
 
